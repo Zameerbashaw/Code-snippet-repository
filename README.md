@@ -14,3 +14,4 @@
 
 ##how to run
 -import as maven project
+-run CodeQuery Application 
