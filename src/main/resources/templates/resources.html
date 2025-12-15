@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeQuery | Resources</title>
+    
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body class="d-flex flex-column min-vh-100 bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index">CodeQuery</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about">About</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="resources">Resources</a></li>
+                    <li class="nav-item"><a class="nav-link" href="newcode">New Code</a></li>
+                </ul>
+                <div class="d-flex ms-3">
+                    <a href="login" class="btn btn-outline-light btn-sm me-2">Login</a>
+                    <a href="register" class="btn btn-primary btn-sm">Register</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container flex-grow-1 py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="fw-bold text-dark mb-0">Community Snippets</h2>
+                    <a href="newcode" class="btn btn-success btn-sm">+ Share New Code</a>
+                </div>
+
+                <div th:each="snippet : ${snippets}" class="card shadow-sm mb-4 border-0">
+                    <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0 fw-bold text-primary" th:text="${snippet.title}">Snippet Title</h5>
+                        <span class="badge bg-secondary rounded-pill" th:text="${snippet.language}">Language</span>
+                    </div>
+                    
+                    <div class="card-body">
+                        <div class="bg-dark rounded p-3 mb-3">
+                            <pre class="mb-0"><code class="text-light font-monospace small" th:text="${snippet.snippet}">// Code will appear here...</code></pre>
+                        </div>
+
+                        <div class="d-flex justify-content-end" th:if="${snippet.id != null}">
+                            <a th:href="@{/snippets/{id}(id=${snippet.id})}" class="btn btn-outline-primary btn-sm">
+                                View Full Details &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div th:if="${#lists.isEmpty(snippets)}" class="text-center py-5">
+                    <h3 class="text-muted">No snippets found yet.</h3>
+                    <p>Be the first to share your code!</p>
+                    <a href="newcode" class="btn btn-primary">Create Snippet</a>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer mt-auto py-3 bg-white text-center border-top">
+        <div class="container">
+            <span class="text-muted">&copy; 2025 CodeQuery. All rights reserved.</span>
+        </div>
+    </footer>
+
+</body>
+</html>

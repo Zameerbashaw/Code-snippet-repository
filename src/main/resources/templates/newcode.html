@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeQuery | Add Snippet</title>
+    
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="d-flex flex-column min-vh-100 bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index">CodeQuery</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="resources">Resources</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="newcode">New Code</a></li>
+                </ul>
+                <div class="d-flex ms-3">
+                    <a href="login" class="btn btn-outline-light btn-sm me-2">Login</a>
+                    <a href="register" class="btn btn-primary btn-sm">Register</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container flex-grow-1 py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card shadow-lg border-0">
+                    <div class="card-header bg-primary text-white p-4">
+                        <h2 class="h4 mb-0 fw-bold">Submit New Code Snippet</h2>
+                        <p class="mb-0 text-white-50 small">Share your solution with the world.</p>
+                    </div>
+                    
+                    <div class="card-body p-5">
+                        <form action="/snippets" method="post">
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-8">
+                                    <label for="title" class="form-label fw-bold text-muted small">SNIPPET TITLE</label>
+                                    <input type="text" class="form-control form-control-lg" id="title" name="title" placeholder="e.g. Java Binary Search Implementation" required />
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="language" class="form-label fw-bold text-muted small">LANGUAGE</label>
+                                    <input type="text" class="form-control form-control-lg" id="language" name="language" placeholder="e.g. Java" required />
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="snippet" class="form-label fw-bold text-muted small">SOURCE CODE</label>
+                                <textarea class="form-control font-monospace bg-light" id="snippet" name="snippet" rows="12" placeholder="// Paste your code here..." style="font-size: 0.9rem;" required></textarea>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center mt-4">
+                                <a href="/resources" class="text-decoration-none text-muted">&larr; Cancel</a>
+                                <button type="submit" class="btn btn-primary btn-lg px-5 shadow-sm">Post Snippet</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer mt-auto py-3 bg-white text-center border-top">
+        <div class="container">
+            <span class="text-muted">&copy; 2025 CodeQuery. All rights reserved.</span>
+        </div>
+    </footer>
+
+</body>
+</html>
