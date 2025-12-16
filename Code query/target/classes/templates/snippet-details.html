@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Snippet Details</title>
+</head>
+<body>
+    <h1>Snippet Details</h1>
+
+    <h3 th:text="${snippet.title}"></h3>
+    <p><strong>Language:</strong> <span th:text="${snippet.language}"></span></p>
+    <pre><code th:text="${snippet.snippet}"></code></pre>
+
+    <h3>Comments:</h3>
+    <div th:each="comment : ${comments}">
+        <p th:text="${comment.content}"></p>
+    </div>
+
+    <!-- Form to post a new comment -->
+    <h3>Post a Comment:</h3>
+    <form th:action="@{/snippets/{id}/comments(id=${snippet.id})}" method="post">
+        <textarea name="content" placeholder="Write a comment..."></textarea>
+        <button type="submit">Post Comment</button>
+    </form>
+</body>
+</html>
