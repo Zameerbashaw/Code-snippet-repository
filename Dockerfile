@@ -6,11 +6,12 @@ WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 
-# Build the app inside the container (skipping tests)
+# Build the app inside the container
 RUN mvn clean package -DskipTests
 
 # --- STAGE 2: Run the Application ---
-FROM openjdk:17-jdk-slim
+# We use eclipse-temurin here instead of the broken 'openjdk' image
+FROM eclipse-temurin:17-jdk-jammy
 WORKDIR /app
 
 # Copy the JAR file from the build stage
